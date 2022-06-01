@@ -54,7 +54,7 @@ if(ANDROID)
     )
 endif()
 
-if(MSVC)
+if(MSVC OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     list(APPEND COMPAT_SOURCES
         win/getopt.h
         win/strings.cc
@@ -98,7 +98,7 @@ if(LINUX)
     target_link_libraries(crashpad_compat PRIVATE dl)
 endif()
 
-if(MSVC)
+if(MSVC OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     target_include_directories(crashpad_compat ${TI_TYPE} "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/win>")
 elseif(MINGW)
     target_include_directories(crashpad_compat ${TI_TYPE} "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/mingw>")

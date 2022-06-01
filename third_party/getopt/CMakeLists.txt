@@ -1,4 +1,4 @@
-if(MSVC)
+if(MSVC OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     add_library(crashpad_getopt STATIC
         getopt.cc
         getopt.h
